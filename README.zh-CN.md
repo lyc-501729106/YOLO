@@ -79,6 +79,8 @@ pip install ultralytics
 ```bash
 # 使用预训练的 YOLO 模型 (例如 YOLO11n) 对图像进行预测
 yolo predict model=yolo11n.pt source='https://ultralytics.com/images/bus.jpg'
+
+yolo predict model=yolov8n.pt source='ultralytics/assets/bus.jpg'
 ```
 
 `yolo` 命令支持各种任务和模式，并接受额外的参数，如 `imgsz=640`。浏览 YOLO [CLI 文档](https://docs.ultralytics.com/usage/cli/)获取更多示例。
