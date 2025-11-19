@@ -1,7 +1,6 @@
 # 命令方式训练
 # yolo task=detect mode=train model=yolov8n.pt  data=yolo.cattle.yml epochs=30  workers=1 batch=2
 
-
 from ultralytics import YOLO
 
 # # 加载一个预训练的 YOLO11n 模型
