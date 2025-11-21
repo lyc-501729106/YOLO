@@ -11,4 +11,4 @@ from ultralytics import YOLO
 
 
 yolo = YOLO("yolov8n.pt")
-yolo.train(data='yolo_cattle.yml',workers=0,epochs=1, batch=2)
+yolo.train(data="yolo_cattle.yml", workers=0, epochs=1, batch=2)
