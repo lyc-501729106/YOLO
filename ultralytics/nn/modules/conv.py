@@ -39,6 +39,8 @@ def autopad(k, p=None, d=1):  # kernel, padding, dilation
 class Conv(nn.Module):
     """Standard convolution module with batch normalization and activation.
 
+    CBS模块 （Conv2d BatchNorm2d  SiLU）
+
     Attributes:
         conv (nn.Conv2d): Convolutional layer.
         bn (nn.BatchNorm2d): Batch normalization layer.

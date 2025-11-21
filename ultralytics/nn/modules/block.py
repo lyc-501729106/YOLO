@@ -207,7 +207,7 @@ class SPP(nn.Module):
 
 class SPPF(nn.Module):
     """Spatial Pyramid Pooling - Fast (SPPF) layer for YOLOv5 by Glenn Jocher."""
-
+    """SPPF模块"""
     def __init__(self, c1: int, c2: int, k: int = 5):
         """Initialize the SPPF layer with given input/output channels and kernel size.
 
@@ -302,6 +302,7 @@ class C2f(nn.Module):
 
     def forward(self, x: torch.Tensor) -> torch.Tensor:
         """Forward pass through C2f layer."""
+        """使用chunk来进行CBS输出的内容进行按照C来分割（H x W x C/2）"""
         y = list(self.cv1(x).chunk(2, 1))
         y.extend(m(y[-1]) for m in self.m)
         return self.cv2(torch.cat(y, 1))
@@ -452,6 +453,8 @@ class GhostBottleneck(nn.Module):
 class Bottleneck(nn.Module):
     """Standard bottleneck."""
 
+    '''封装了两个CBS模块，通过判断选择是带残差的还是不带残差的Bottleneck模块'''
+
     def __init__(
         self, c1: int, c2: int, shortcut: bool = True, g: int = 1, k: tuple[int, int] = (3, 3), e: float = 0.5
     ):
@@ -473,6 +476,7 @@ class Bottleneck(nn.Module):
 
     def forward(self, x: torch.Tensor) -> torch.Tensor:
         """Apply bottleneck with optional shortcut connection."""
+        '''带残差和不带残差在这里'''
         return x + self.cv2(self.cv1(x)) if self.add else self.cv2(self.cv1(x))
 
 
